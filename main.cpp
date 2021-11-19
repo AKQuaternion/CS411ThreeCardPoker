@@ -18,10 +18,7 @@ enum HandTypes {
 
 std::array<int, HANDTYPES_MAX> payouts = {100, 50, 9, 4, 1, 0};
 
-const int NumberOfHandTypes = 6;
-static_assert(NumberOfHandTypes == HANDTYPES_MAX);
-
-std::array<std::string, NumberOfHandTypes> handRankNames = {"Straight flush", "Trips", "Straight", "Flush", "Pair",
+std::array<std::string, HANDTYPES_MAX> handRankNames = {"Straight flush", "Trips", "Straight", "Flush", "Pair",
                                                             "High card"};
 
 int rank(Card c) { return c % 13; }
@@ -59,7 +56,7 @@ HandTypes rankHand(Card c1, Card c2, Card c3) { //returns the highest hand rank 
 }
 
 int main() {
-    std::array<int, NumberOfHandTypes> frequencies = {0};
+    std::array<int, HANDTYPES_MAX> frequencies = {0};
     int handsConsidered = 0;
     for (int c1 = 0; c1 < 52; ++c1)
         for (int c2 = c1 + 1; c2 < 52; ++c2)
