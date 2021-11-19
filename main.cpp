@@ -58,9 +58,9 @@ HandTypes rankHand(Card c1, Card c2, Card c3) { //returns the highest hand rank 
 int main() {
     std::array<int, HANDTYPES_MAX> frequencies = {0};
     int handsConsidered = 0;
-    for (int c1 = 0; c1 < 52; ++c1)
-        for (int c2 = c1 + 1; c2 < 52; ++c2)
-            for (int c3 = c2 + 1; c3 < 52; ++c3) {
+    for (Card c1 = 0; c1 < 52; ++c1)
+        for (Card c2 = c1 + 1; c2 < 52; ++c2)
+            for (Card c3 = c2 + 1; c3 < 52; ++c3) {
                 ++handsConsidered;
                 ++frequencies[rankHand(c1, c2, c3)];
             }
