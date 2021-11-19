@@ -8,6 +8,10 @@ using std::cout;
 using std::setw;
 
 using Card = int;
+//cards are 0..51, ordered Ac, 2c, ..., Kc, Ad, ..., Kd, hearts, spades
+//                         0   1        12  13       25  26..38, 39..51
+// so the rank of a card is c%13 and the suit is c/13
+
 enum HandTypes {
     STRAIGHT_FLUSH, TRIPS, STRAIGHT, FLUSH, PAIR, HIGH_CARD, HANDTYPES_MAX
 };
@@ -26,7 +30,7 @@ int suit(Card c) { return c / 13; }
 
 bool isTrips(Card c1, Card c2, Card c3) { return rank(c1) == rank(c2) && rank(c2) == rank(c3); }
 
-bool hasPair(Card c1, Card c2, Card c3) { return rank(c1) == rank(c2) || rank(c2) == rank(c3) || rank(c1) == rank(c3); }
+bool hasPair(Card c1, Card c2, Card c3) { return rank(c1) == rank(c2) || rank(c2) == rank(c3) || rank(c1) == rank(c3);}
 
 bool isFlush(Card c1, Card c2, Card c3) { return suit(c1) == suit(c2) && suit(c2) == suit(c3); }
 
@@ -37,7 +41,7 @@ bool isStraight(Card c1, Card c2, Card c3) {
            || (ranks[1] - 1 == ranks[0] && ranks[2] - 2 == ranks[0]); //other straights
 }
 
-HandTypes rankHand(Card c1, Card c2, Card c3) { //returns the highest rank that applies
+HandTypes rankHand(Card c1, Card c2, Card c3) { //returns the highest hand rank that applies
     // Note that the order we check these hands is significant, for instance, trips are also a pair
     // and a straight flush is also a flush, so we check hand types in order from highest to lowest
     if (isFlush(c1, c2, c3) && isStraight(c1, c2, c3))
